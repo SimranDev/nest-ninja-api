@@ -6,15 +6,19 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { CreateNinjaDto } from './dto/create-ninja.dto';
+import { NinjasService } from './ninjas.service';
 
 @Controller('ninjas')
 export class NinjasController {
+  constructor(private readonly ninjasService: NinjasService) {}
   //GET /ninjas --> []
   @Get()
-  getNinjas() {
-    return [];
+  getNinjas(@Query('weapon') weapon?: 'stars' | 'sword' | 'katana') {
+    // const service = new NinjasService();
+    return this.ninjasService.getNinjas(weapon);
   }
   //GET /ninjas/:id --> { ... }
   @Get(':id')
