@@ -5,6 +5,7 @@ import {
   Get,
   NotFoundException,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   Query,
@@ -23,9 +24,9 @@ export class NinjasController {
   }
   //GET /ninjas/:id --> { ... }
   @Get(':id')
-  getOneNinja(@Param('id') id: string) {
+  getOneNinja(@Param('id', ParseIntPipe) id: number) {
     try {
-      return this.ninjasService.getNinja(+id);
+      return this.ninjasService.getNinja(id);
     } catch (error) {
       throw new NotFoundException();
     }
