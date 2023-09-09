@@ -23,23 +23,21 @@ export class NinjasController {
   //GET /ninjas/:id --> { ... }
   @Get(':id')
   getOneNinja(@Param('id') id: string) {
-    return { id };
+    return this.ninjasService.getNinja(+id);
   }
   //POST /ninjas --> { ... }
   @Post()
   createNinja(@Body() body: CreateNinjaDto) {
-    return {
-      name: body.name,
-    };
+    return this.ninjasService.createNinja(body);
   }
   //PUT /ninjas/:id --> { ... }
   @Put(':id')
-  updateNinja() {
-    return {};
+  updateNinja(@Param('id') id: string, @Body() body: CreateNinjaDto) {
+    return this.ninjasService.updateNinja(+id, body);
   }
   //DELETE /ninjas/:id --> { ... }
   @Delete(':id')
-  deleteNinja() {
-    return {};
+  deleteNinja(@Param('id') id: string) {
+    return this.ninjasService.removeNinja(+id);
   }
 }
