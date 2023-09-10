@@ -1,4 +1,4 @@
 export class UpdateNinjaDto {
   name: string;
-  weapon: string;
+  weapon: 'stars' | 'sword' | 'katana';
 }
